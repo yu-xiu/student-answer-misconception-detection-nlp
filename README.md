@@ -43,7 +43,7 @@ This project fine-tuned **BERT-base** on this dataset and conducted analysis of 
 <img src="results/confusion_matrix.png" alt="confusion matrix" width="500"/>
 
 ### Example Attribution (Wrong Answer: *Plants eat soil*)  
-<img src="results/attribution_example.png" alt="attribution example" width="500"/>
+<img src="results/attribution_example.png" alt="attribution example" width="700"/>
 
 - Model predicted: **Correct**  
 - True label: **Wrong**  
