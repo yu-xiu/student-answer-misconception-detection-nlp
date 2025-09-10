@@ -35,13 +35,13 @@ This project fine-tuned **BERT-base** on this dataset and conducted analysis of 
 
 ## 📈 Results  
 ### Common Words
-<img src="results/wordCloud.png" alt="common_words" width="300"/>
+<img src="results/wordCloud.png" alt="common_words" width="500"/>
 
 ### Confusion Matrix  
-![Confusion Matrix](results/confusion_matrix.png)  
+<img src="results/confusion_matrix.png" alt="confusion matrix" width="500"/>
 
 ### Example Attribution (Wrong Answer: *Plants eat soil*)  
-![Attribution Example](results/attribution_example.png)  
+<img src="results/attribution_example.png" alt="attribution example" width="500"/>
 
 - Model predicted: **Correct**  
 - True label: **Wrong**  
