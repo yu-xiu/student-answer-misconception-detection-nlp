@@ -4,11 +4,8 @@
 </p>
 ## 📌 Project Overview  
 This project applies **NLP and explainable AI** to the [SciEntsBank dataset](https://huggingface.co/datasets/nkazi/SciEntsBank), which contains student short answers labeled into five categories:  
-- **Correct**  
-- **Wrong**  
-- **Partially correct**  
-- **Irrelevant**  
-- **Contradictory**  
+Correct, Wrong, Partially correc, Irrelevant, and Contradictory.
+</br>  
 
 This project fine-tuned **BERT-base** on this dataset and conducted analysis of the model’s performance and explainability to better understand how NLP models can assist teachers in detecting student misconceptions.  
 
