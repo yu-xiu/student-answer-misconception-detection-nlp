@@ -1,49 +1,61 @@
-# Misconception Detection in Student Short Answers
+# SciEntsBank BERT: Misconception Detection in Student Short Answers  
+<img src="assets/logo.png" alt="project logo" width="150"/>
+## 📌 Project Overview  
+This project applies **NLP and explainable AI** to the [SciEntsBank dataset](https://huggingface.co/datasets/nkazi/SciEntsBank), which contains student short answers labeled into five categories:  
+- **Correct**  
+- **Wrong**  
+- **Partially correct**  
+- **Irrelevant**  
+- **Contradictory**  
 
-This project explores **automatic misconception detection** in student open-ended responses using the **SciEntsBank dataset**.  
-By combining **state-of-the-art NLP models** (BERT-base, DeBERTa, LLaMA) with **explainable AI techniques** (SHAP).
-This project aims to:
+This project fine-tuned **BERT-base** on this dataset and conducted analysis of the model’s performance and explainability to better understand how NLP models can assist teachers in detecting student misconceptions.  
 
-- 📖 Classify student answers into *Correct, Partially Correct, Incorrect, Irrelevant*.  
-- 🔎 Identify common **misconception patterns** across student populations.  
-- 🧩 Provide **interpretable explanations** for model predictions to support teachers and researchers.  
+---
 
-### 🎯 Motivation
-Most EdTech systems provide only "right/wrong" judgments, but teachers and students need deeper insights into **why mistakes happen**.  
-This project bridges **educational science** and **data science** by uncovering student misconceptions and making model decisions transparent.  
+## 📊 Workflow  
+1. **EDA (Exploratory Data Analysis)**  
+   - Checked null values and class distribution  
+   - Visualized answer length, label imbalance, and common words  
 
-### ✨ Key Features
-- Fine-tuned transformer-based models, such as BERT-base (Bidirectional Encoder Representations from Transformer), DeBERTa, and LLaMA for short answer classification.  
-- Misconception clustering and visualization to highlight common learning difficulties.  
-- Explainability via SHAP for transparent feedback.  
-- Jupyter notebooks for reproducibility and easy experimentation.  
+2. **Model Fine-tuning**  
+   - Fine-tuned `bert-base-uncased` using HuggingFace Trainer  
+   - Achieved ~54% accuracy and macro-F1 of ~0.38  
 
+3. **Evaluation & Analysis**  
+   - Generated **confusion matrix** and **classification report**  
+   - Model performs best on *correct* and *irrelevant* categories  
+   - Low recall on *wrong* → fails to detect misconceptions consistently  
 
-### Models
-#### Model: BERT-base
+4. **Explainability**  
+   - Applied **Integrated Gradients (Captum)** for token-level attributions  
+   - Found model often over-relies on structural tokens like `[SEP]`  
+   - Misconception tokens (e.g., *eat soil*) received weak attribution → explains poor recall on *wrong*  
 
-[BERT](https://arxiv.org/abs/1810.04805) (*Bidirectional Encoder Representations from Transformers*) is a transformer-based language model introduced by Google in 2018. It was pretrained on large English corpora (BookCorpus and Wikipedia) using two self-supervised tasks:
+---
 
-- **Masked Language Modeling (MLM):** predicting randomly masked words in a sentence.  
-- **Next Sentence Prediction (NSP):** predicting whether one sentence logically follows another.  
+## 📈 Results  
+### Common Words
+<img src="results/wordCloud.png" alt="common_words" width="300"/>
 
-The **BERT-base** configuration is the standard version of the model with:
-- 12 transformer encoder layers  
-- Hidden size of 768  
-- 12 self-attention heads  
-- ~110M parameters  
+### Confusion Matrix  
+![Confusion Matrix](results/confusion_matrix.png)  
 
-BERT-base provides a strong balance between efficiency and accuracy and is widely used as a baseline for fine-tuning in downstream NLP tasks such as classification, question answering, and semantic similarity.
+### Example Attribution (Wrong Answer: *Plants eat soil*)  
+![Attribution Example](results/attribution_example.png)  
 
+- Model predicted: **Correct**  
+- True label: **Wrong**  
+- Attribution: High weight on `[SEP]`, low weight on *eat/soil* → model missed misconception keywords.  
 
-### 🚀 Future Work
-- Integrating Reinforcement Learning for adaptive feedback.  
-- Building a dashboard for teachers to visualize misconceptions.  
+---
 
+## 🎓 Educational Insights  
+- The model is reliable at recognizing correct answers and filtering irrelevant ones.  
+- It struggles to distinguish nuanced misconceptions, highlighting the importance of **explainability tools** for diagnosis.  
+- Attribution analysis explains *why* the model makes errors and how to improve training data.  
 
+---
 
-
-## 📜 License
-This repository is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)**.  
-You may use this work for **research and educational purposes only**.  
-👉 [View full license here](https://creativecommons.org/licenses/by-nc/4.0/)
+## 🔮 Future Work  
+- Address class imbalance (class weights, data augmentation)  
+- Experiment with stronger models (DeBERTa, RoBERTa)  
