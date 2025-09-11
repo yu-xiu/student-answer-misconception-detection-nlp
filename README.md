@@ -2,6 +2,7 @@
 <p align="center">
   <img src="assets/logo.png" alt="Project Logo" width="150"/>
 </p>
+
 ## 📌 Project Overview  
 This project applies **NLP and explainable AI** to the [SciEntsBank dataset](https://huggingface.co/datasets/nkazi/SciEntsBank), which contains student short answers labeled into five categories:  
 Correct, Wrong, Partially correc, Irrelevant, and Contradictory.
